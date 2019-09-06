@@ -14,7 +14,7 @@ export default class Arrow extends Component {
         const yAxisOffset = 23;
 
         return (
-            <Svg x={x-xAxisOffset} y={y-yAxisOffset} >
+            <Svg {...this.props.events} x={x-xAxisOffset} y={y-yAxisOffset} >
                 <SvgTradeIcon direction={datum.tradeDirection} connotation={datum.connotation}/>
             </Svg>
         );

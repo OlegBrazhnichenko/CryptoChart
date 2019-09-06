@@ -8,7 +8,7 @@ export default class App extends React.Component {
         const data = [];
 
         // point from which chart data would start
-        let currentPadding = 1000;
+        let currentPadding = 1000.234234;
 
         let temp;
 
@@ -45,7 +45,6 @@ export default class App extends React.Component {
             resultData.push({
                 x: new Date(2016, 6, i*2),
                 y: Math.floor(Math.random() * 500), // generate random bar height in range 0-500
-                label:"Some text",
             })
         }
 
