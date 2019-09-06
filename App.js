@@ -25,10 +25,10 @@ export default class App extends React.Component {
                 high: high + currentPadding,// low and high always from point to point+200
                 open: Math.floor(Math.random() * high) + currentPadding, // get open and close in range of low-high (0-200)
                 close: Math.floor(Math.random() * high) + currentPadding,
-                label: "test",
+                volume: Math.floor(Math.random() * 500), // generate random bar height in range 0-500
             };
-            // If index of current candle match index from tradesIndexes that add a trade with random direction
-            temp.trade = ~tradesIndexes.indexOf(i) ? {tradeDirection: Math.round(Math.random()) ? "up" : "down"} : undefined;
+            // If index of current candle match index from tradesIndexes that add a trade with sample data
+            temp.trade = ~tradesIndexes.indexOf(i) ? {type: "closeLong", price: "2000"} : undefined;
 
             data.push(temp);
 
@@ -39,28 +39,18 @@ export default class App extends React.Component {
         return data;
     }
 
-    getSampleVolumeBarData() {
-        const resultData = [];
-        for (let i = 1; i<= 80; i++) {
-            resultData.push({
-                x: new Date(2016, 6, i*2),
-                y: Math.floor(Math.random() * 500), // generate random bar height in range 0-500
-            })
-        }
-
-        return resultData;
-    }
     render() {
 
         const candleChartData = this.getSampleCandleChartData();
-        const volumeBarData = this.getSampleVolumeBarData();
+
+        const nearestTrades = [{y: 1000, type: "closeLong"}, {y:1455, type:"short"}];
 
         return (
             <View style={styles.container}>
               <Chart
                   tradingPair={"ETH/USD"}
                   candleChartData={candleChartData}
-                  volumeBarData={volumeBarData}
+                  nearestTrades={nearestTrades}
               />
             </View>
         );
